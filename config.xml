@@ -19,15 +19,13 @@
 	
 	<preference name="phonegap-version" value="3.4.0" />
 	<preference name="orientation" value="portrait" />
-	<preference name="fullscreen" value="true" />  
+	<preference name="fullscreen" value="false" />  
 	<preference name="stay-in-webview" value="true" />
 	
 	<preference name="deployment-target" value="5.0" />
     
     <gap:platform name="ios" />    	
-	
-	
-	
+
 	
     <gap:plugin name="nl.madebymark.share" version="0.1.1" />
     
