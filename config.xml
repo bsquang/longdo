@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.bsq.longdo"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>LA STORAGE CALCULATOR</name>
+
+    <description>
+        L.A STORAGE calculated!
+    </description>
+
+    <author href="http://www.cherryvietnam.com" email="thisisacherryvn@gmail.com">
+        bsq
+    </author>
+	
+	<preference name="phonegap-version" value="3.4.0" />
+	<preference name="orientation" value="portrait" />
+	<preference name="fullscreen" value="true" />  
+	<preference name="stay-in-webview" value="true" />
+	
+	<preference name="deployment-target" value="5.0" />
+    
+    <gap:platform name="ios" />    	
+	
+	
+	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+		<false/>
+	</gap:config-file>
+	<gap:config-file platform="ios" parent="UIStatusBarHidden">
+		<true/>
+	</gap:config-file>
+	
+    <gap:plugin name="com.verso.cordova.clipboard" version="0.1.0" />
+	
+	
+	<access origin="*"/>
+</widget>
