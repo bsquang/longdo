@@ -34,7 +34,8 @@
 		<true/>
 	</gap:config-file>
 	
-    <gap:plugin name="com.verso.cordova.clipboard" version="0.1.0" />
+    <gap:plugin name="nl.madebymark.share" version="0.1.1" />
+    
 	
 	
 	<access origin="*"/>

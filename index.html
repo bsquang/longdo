@@ -89,7 +89,11 @@
 	}	
 	
 	function selectAllReport(){	  
-	  if(bPhoneGap) window.plugins.copy(result_text);
+	  if(bPhoneGap)
+	  {
+		navigator.share(result_text,"","");
+	  }
+	  //window.plugins.copy(result_text);
 	}
 	
 	var formatMoney=function(a,t,s,e){var r=a,t=isNaN(t=Math.abs(t))?2:t,s=void 0==s?".":s,e=void 0==e?",":e,i=0>r?"-":"",o=parseInt(r=Math.abs(+r||0).toFixed(t))+"",d=(d=o.length)>3?d%3:0;return i+(d?o.substr(0,d)+e:"")+o.substr(d).replace(/(\d{3})(?=\d)/g,"$1"+e)+(t?s+Math.abs(r-o).toFixed(t).slice(2):"")};
