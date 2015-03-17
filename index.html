@@ -98,13 +98,27 @@
 	
 	var formatMoney=function(a,t,s,e){var r=a,t=isNaN(t=Math.abs(t))?2:t,s=void 0==s?".":s,e=void 0==e?",":e,i=0>r?"-":"",o=parseInt(r=Math.abs(+r||0).toFixed(t))+"",d=(d=o.length)>3?d%3:0;return i+(d?o.substr(0,d)+e:"")+o.substr(d).replace(/(\d{3})(?=\d)/g,"$1"+e)+(t?s+Math.abs(r-o).toFixed(t).slice(2):"")};
 	
+	function bsqStringToNumber(content){
+	  var temp = content;    
+	  temp = '{"a":'+temp+'}';    
+	  temp = JSON.parse(temp);    
+	  return temp.a;
+	}
+	
 	var result_text = '';
 	function cal() {
 	  
 		var orderValue = document.getElementById("orderValue").value;
 		var weightValue = document.getElementById("weightValue").value;
 		var shippingCost = document.getElementById("shippingCost").value;
+		
+		orderValue = bsqStringToNumber(orderValue);
+		weightValue = bsqStringToNumber(weightValue);
+		shippingCost = bsqStringToNumber(shippingCost);
+		
 		var rate = document.getElementById("rate").value;
+		rate = bsqStringToNumber(rate);
+		
 		var total = document.getElementById("total");
 	
 		var overload = weightValue - (orderValue / 50) * 3;
@@ -128,7 +142,6 @@
 		setTimeout(function(){ document.activeElement.blur(); }, 100);
 		
 		changeTab(2);
-		
 		
 	}
 
