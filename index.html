@@ -14,29 +14,29 @@
     </head>
   <body>
 	<div class='wrapper'>
-	  <div class='bsq-row group ios-toolbar ios-toolbar-dark' style='padding-top:20px'>
+	  <div class='bsq-row group ios7-toolbar' style='padding-top:20px;position: fixed;z-index: 9999;top: 0;-webkit-transform: translateZ(0)'>
 		<p style='text-align: center;line-height: 42px;' id='title-top'>L.A STORAGE CALCULATOR</p>	  
 	  </div>
 	  <div class='bsq-tab' bsq-id='1' style='padding: 10px;position: relative'>
 		
 		<div class='bsq-row'>
 		  <p style='padding: 10px;'>Giá trị đơn hàng:</p>
-		  <input id='orderValue' type='tel' style='font-size: 20px;padding: 15px;width: 100%;' placeholder='0' />		
+		  <input id='orderValue' type='number' style='font-size: 20px;padding: 15px;width: 100%;' placeholder='0' />		
 		</div> 
 		<div class='bsq-row'>
 		  <p style='padding: 10px;'>Khối lượng đơn hàng:</p>
-		  <input id='weightValue' type='tel' style='font-size: 20px;padding: 15px;width: 100%;' placeholder='0' />		
+		  <input id='weightValue' type='number' style='font-size: 20px;padding: 15px;width: 100%;' placeholder='0' />		
 		</div>
 		<div class='bsq-row'>
 		  <p style='padding: 10px;'>Tiền ship nội địa:</p>
-		  <input id='shippingCost' type='tel' value='0' style='font-size: 20px;padding: 15px;width: 100%;' />		
+		  <input id='shippingCost' type='number' style='font-size: 20px;padding: 15px;width: 100%;' placeholder='0'/>		
 		</div>
 		<div class='bsq-row'>
 		  <p style='padding: 10px;'>Tỉ giá:</p>
-		  <input id='rate' type='tel' value='25000' style='font-size: 20px;padding: 15px;width: 100%;' />		
+		  <input id='rate' type='number' value='25000' style='font-size: 20px;padding: 15px;width: 100%;' />		
 		</div>
 		<div class='bsq-row' style='padding: 10px 0'>
-		  <div class='ios-button ios-button-confirm' id="calculator" style='margin-bottom: 100px;' ontouchend="cal()">Tính hóa đơn</div>
+		  <div class='ios7-button' id="calculator" style='margin-bottom: 100px;' onclick="cal()">Tính hóa đơn</div>
 		  <!--<input type="button" id="calculator" onclick="cal()" value="Start" style='width: 100%;padding: 20px;'><br/>-->
 		</div>
 		
@@ -45,8 +45,8 @@
 	  <div class='bsq-tab' bsq-id='2' style='display: none;'>
 		<div class='bsq-row' style='padding: 10px;'>
 		  <p id="total" style='font-size: 20px;padding: 15px; margin-bottom: 10px;width: 100%;'></p>
-		  <div class='ios-button ios-button-decline' style='margin-bottom: 10px' ontouchend="selectAllReport()">Share</div>		  
-		  <div class='ios-button ios-button-confirm' style='margin-bottom: 100px' ontouchend="resetCal()">Quay lại</div>
+		  <div class='ios7-button' style='margin-bottom: 10px' onclick="selectAllReport()">Chia sẻ</div>		  
+		  <div class='ios7-button' style='margin-bottom: 100px' onclick="resetCal()">Quay lại</div>
 		</div>
 	  </div>
 	  
@@ -56,96 +56,19 @@
 	  
 	</div>
 	
-	<script src='phonegap.js'></script>	  
 	<script src='jquery.js'></script>
 	<script src='fastclick.js'></script>
 	
+	<script src='jstz.min.js'></script>
+	<script src='moment-with-locales.min.js'></script>
+	<script src='moment-timezone-with-data.min.js' ></script>
+	
+	
 	<script type="text/javascript">
-    var bPhoneGap = true;  
-      
-	
-	if ('addEventListener' in document) {
-		document.addEventListener('DOMContentLoaded', function() {
-			FastClick.attach(document.body);
-			
-			$(document).scrollTop(0);
-			$("#orderValue").focus();
-			
-		}, false);
-	}
-	
-	
-
-	
-	function changeTab(value){
-	  $(".bsq-tab").hide();
-	  $(".bsq-tab[bsq-id="+value+"]").fadeIn(200);
-	}
-	
-	function resetCal(){
-	  $(document).scrollTop(0);
-	  changeTab(1);
-	  
-	  setTimeout(function(){ $("#orderValue").focus(); },300);	  
-	}	
-	
-	function selectAllReport(){	  
-	  if(bPhoneGap)
-	  {
-		navigator.share(result_text,"","");
-	  }
-	  //window.plugins.copy(result_text);
-	}
-	
-	var formatMoney=function(a,t,s,e){var r=a,t=isNaN(t=Math.abs(t))?2:t,s=void 0==s?".":s,e=void 0==e?",":e,i=0>r?"-":"",o=parseInt(r=Math.abs(+r||0).toFixed(t))+"",d=(d=o.length)>3?d%3:0;return i+(d?o.substr(0,d)+e:"")+o.substr(d).replace(/(\d{3})(?=\d)/g,"$1"+e)+(t?s+Math.abs(r-o).toFixed(t).slice(2):"")};
-	
-	function bsqStringToNumber(content){
-	  var temp = content;    
-	  temp = '{"a":'+temp+'}';    
-	  temp = JSON.parse(temp);    
-	  return temp.a;
-	}
-	
-	var result_text = '';
-	function cal() {
-	  
-		var orderValue = document.getElementById("orderValue").value;
-		var weightValue = document.getElementById("weightValue").value;
-		var shippingCost = document.getElementById("shippingCost").value;
-		
-		orderValue = bsqStringToNumber(orderValue);
-		weightValue = bsqStringToNumber(weightValue);
-		shippingCost = bsqStringToNumber(shippingCost);
-		
-		var rate = document.getElementById("rate").value;
-		rate = bsqStringToNumber(rate);
-		
-		var total = document.getElementById("total");
-	
-		var overload = weightValue - (orderValue / 50) * 3;
-		var overloadMoney = overload * 3;
-		var cal = orderValue * 1.09 + overload * 3 + shippingCost;
-	
-		var viewText = "Giá trị đơn hàng: " + formatMoney(orderValue, 0) + " USD";
-		viewText += "\nĐơn hàng sau thuế và ship: " + formatMoney(orderValue * 1.09 + shippingCost, 2, '.', ',') + " USD";
-		viewText += "(" + formatMoney(orderValue, 0) + " USD + 9% tax + " + shippingCost + " USD ship nội địa USA)";
-		if (overload > 0) {
-			viewText += "\nĐơn hàng bị phụ thu: " + overload + " lbs ~" + overloadMoney + " USD (quy đổi ~ " + formatMoney(overloadMoney * rate, 0) + " VND)";
-		} else {
-			viewText += "\nĐơn hàng không bị phụ thu.";
-		}
-		viewText += "\nTổng cộng: " + formatMoney(cal, 2, '.', ',') + " USD (quy đổi ~ " + formatMoney(Math.ceil(cal * rate / 5000) * 5000, 0) + " VND)";
-		total.innerText = viewText;
-		
-		result_text = viewText;
-		
-		$(document).scrollTop(0);
-		setTimeout(function(){ document.activeElement.blur(); }, 100);
-		
-		changeTab(2);
-		
-	}
-
+    var bPhoneGap = true;
 	</script>
+	
+	<script src='game.js?89'></script>
+	
 </body>
 </html>

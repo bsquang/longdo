@@ -38,31 +38,7 @@ body, html, input, textarea{
     -webkit-user-select: text;
   }
   
-  #container-pull {
-      height: 600px; 
-      min-width: 980px; 
-      /*max-width: 950px;*/      
-  }
-  #container-dd {
-    
-    height: 600px;
-    width: 980px;
-    
-      /*max-width: 800px;*/
-    
-    /*margin: 0 auto;*/
-    /*margin-top: 70px;*/
-      
-    /*float: left;
-    width: 450px;
-    height: 230px;*/
-  }
   
-  #divForGraph {
-  float: left;
-  width: 450px;
-  height: 230px;
-}
   
   .panel{
     width: 1024px;    
@@ -72,155 +48,10 @@ body, html, input, textarea{
     position: relative;
     display: none;
   }
-  #panel-00{
-    background: url('resources/BGR-INTRO.png');
-  }
-  #panel-01{
-    
-  }
-  #panel-02{
-    
-  }
-  #panel-07{
-    background: url('resources/BGR-END.png');
-  }
-  #panel-05{
-    /*background: url('resources/NUTRITION-REPORT.png');*/
-  }
   
   
-  .logo-luvitas{
-    width: 106px;
-    height: 39px;
-    background: url('resources/LOGO-VINUTAS.png');
-    background-size: cover;
-    
-    position: fixed;
-    right: 45px;
-    top: 25px;
-    
-    z-index: 9999;
-  }
+
   
-  
-  .button-1{
-    padding: 10px;
-    
-    position: absolute;
-    z-index: 999;
-    
-    width: 76px;
-    height: 76px;
-    
-    background: url('resources/BUTTON-NEXT.png');
-    background-size: cover;
-  }
-  .button-config{
-    width: 50px;
-    height: 50px;
-    
-    border: none;
-    
-    right: 0;
-    top: 0;
-    
-    position: fixed;
-    z-index: 999;
-  }
-  .button-reload{
-    width: 50px;
-    height: 50px;
-    
-    border: none;
-    
-    left: 0;
-    bottom: 0;
-    
-    position: fixed;
-    z-index: 999;
-  }
-  #btt-next-intro{
-    background: none;
-    /*border: 1px solid;*/
-    left: 40px;
-    top: 290px;
-    width: 218px;
-    height: 50px;
-  }
-  #btt-next-info
-  {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    
-    display: none;
-  }
-  #btt-next-ptdd
-  {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    
-    display: none;
-  }
-  
-  #btt-next-ptlk
-  {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-  }
-   #btt-next-tpdd
-  {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-  }
-    
-  
-  
-  #div-info-parent{
-    position: absolute;
-    left: 100px;
-    top: 150px;
-  }
-  
-  #table-info{
-    /*display: none;*/
-  }
-  
-  #div-meal{
-    display: none;
-  }
-  #div-pull
-  {
-    display: none;
-  }
-  .btt-ptlk{
-    width: 110px;
-    margin-top: 200px;
-    background: white;
-    padding: 30px;
-    text-align: center;
-    margin: 140px auto;
-    
-    display: none;
-  }
-  
-  .btt-print{
-    width: 110px;
-    margin-top: 200px;
-    background: grey;
-    padding: 30px;
-    text-align: center;
-    margin: 140px auto;
-  }
-    #btt-next-print
-  {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-  }
   
   ::-webkit-input-placeholder { /* WebKit browsers */
       color:    #9bcdff;
@@ -378,7 +209,7 @@ body, html, input, textarea{
 }
   
 body{
-  background: gainsboro;
+  background: #f0eff5;
 }
 
 .bsq-wrapper{
@@ -566,6 +397,29 @@ body{
     background-image: -moz-linear-gradient(top, #d3dade, #b5bec6);
     background-image: -o-linear-gradient(top, #d3dade, #b5bec6);
     background-image: -ms-linear-gradient(top, #d3dade, #b5bec6);
+}
+
+.ios7-button{
+    line-height: 42px;
+    text-align: center;
+    
+    background-color: #fff;    
+    border-radius: 6px;
+    
+    color: #0080ff;    
+    font-weight: bold;    
+}
+
+.ios7-toolbar{
+    background-color: white;
+    overflow: hidden;
+    font-weight: bold;
+    color: #000000;    
+    border-bottom: 1px solid #e1e1e3;
+}
+
+input{
+    border: 1px solid #e1e1e3;
 }
 
 /*iOS input*/
