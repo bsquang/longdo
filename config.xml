@@ -22,6 +22,8 @@
 	<preference name="fullscreen" value="false" />  
 	<preference name="stay-in-webview" value="true" />
 	
+	<preference name="ios-statusbarstyle" value="black-opaque" /> 
+	
 	<preference name="deployment-target" value="5.0" />
     
     <gap:platform name="ios" />    	
