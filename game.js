@@ -75,20 +75,29 @@ function cal() {
     rate = bsqStringToNumber(rate);
     
     var total = document.getElementById("total");
-
-    var overload = weightValue - (orderValue / 50) * 3;
-    var overloadMoney = overload * 3;
-    var cal = orderValue * 1.09 + overload * 3 + shippingCost;
-
-    var viewText = "Giá trị đơn hàng: " + formatMoney(orderValue, 0) + " USD\n";
-    viewText += "Khối lượng đơn hàng: " + formatMoney(weightValue, 0) + " lbs\n";    
-    viewText += "\nĐơn hàng sau thuế và ship: " + formatMoney(orderValue * 1.09 + shippingCost, 2, '.', ',') + " USD";
-    viewText += "(" + formatMoney(orderValue, 0) + " USD + 9% tax + " + shippingCost + " USD ship nội địa USA)";    
     
-    if (overload > 0) viewText += "\nĐơn hàng bị phụ thu: " + overload + " lbs ~" + overloadMoney + " USD (quy đổi ~ " + formatMoney(overloadMoney * rate, 0) + " VND)";
+    var donhangsauthuevaship = (orderValue * 1.09) + shippingCost;
+
+    var overload = weightValue - (orderValue / 50) * 3;    
+    var overloadMoney = overload * 3;
+    
+    var cal = 0;
+    if (overload >= 0) {
+        cal = orderValue * 1.09 + overload * 3 + shippingCost;
+    }else{
+        cal = orderValue * 1.09 + shippingCost;
+    }
+    
+
+    var viewText = "Giá trị đơn hàng: " + formatMoney(orderValue, 2, '.', ',')  + " USD\n";
+    viewText += "Khối lượng đơn hàng: " + formatMoney(weightValue, 2, '.', ',')  + " lbs\n";    
+    viewText += "\nĐơn hàng sau thuế và ship: " + formatMoney(donhangsauthuevaship, 4, '.', ',') + " USD";
+    viewText += "(" + formatMoney(orderValue, 2, '.', ',')  + " USD + 9% tax + " + shippingCost + " USD ship nội địa USA)";    
+    
+    if (overload > 0) viewText += "\nĐơn hàng bị phụ thu: " + overload + " lbs ~" + overloadMoney + " USD (quy đổi ~ " + formatMoney(overloadMoney * rate, 2, '.', ',')  + " VND)";
     else viewText += "\nĐơn hàng không bị phụ thu.";    
     viewText += "\nGhi chú: Freeship 3 lbs cho mỗi 50 USD giá trị order.\n";
-    viewText += "\nTổng cộng: " + formatMoney(cal, 2, '.', ',') + " USD (quy đổi ~ " + formatMoney(Math.ceil(cal * rate / 5000) * 5000, 0) + " VND)";
+    viewText += "\nTổng cộng: " + formatMoney(cal, 2, '.', ',') + " USD (quy đổi ~ " + formatMoney(Math.ceil(cal * rate / 5000) * 5000, 2, '.', ',')  + " VND)";
     
     viewText += "\nNgày tạo hóa đơn: " + bsqConvertDateTime();
     
