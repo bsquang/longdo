@@ -26,7 +26,8 @@ function resetCal(){
 function selectAllReport(){	  
   if(bPhoneGap)
   {
-    navigator.share(result_text,"","");
+    window.plugins.socialsharing.share(result_text);
+    //navigator.share(result_text,"","");
   }
   //window.plugins.copy(result_text);
 }
