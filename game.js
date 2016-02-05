@@ -60,6 +60,7 @@ function cal() {
     var orderValue = document.getElementById("orderValue").value;
     var weightValue = document.getElementById("weightValue").value;
     var shippingCost = document.getElementById("shippingCost").value;
+    var taxValue = document.getElementById("tax").value;
     
     if (orderValue == '') orderValue = 0;
     if (weightValue == '') weightValue = 0;
@@ -75,24 +76,24 @@ function cal() {
     rate = bsqStringToNumber(rate);
     
     var total = document.getElementById("total");
-    
-    var donhangsauthuevaship = (orderValue * 1.09) + shippingCost;
+    var tax = 1 + (taxValue / 100);
+    var donhangsauthuevaship = (orderValue * tax) + shippingCost;
 
     var overload = weightValue - (orderValue / 50) * 3;    
     var overloadMoney = overload * 3;
     
     var cal = 0;
     if (overload >= 0) {
-        cal = orderValue * 1.09 + overload * 3 + shippingCost;
+        cal = orderValue * tax + overload * 3 + shippingCost;
     }else{
-        cal = orderValue * 1.09 + shippingCost;
+        cal = orderValue * tax + shippingCost;
     }
     
 
     var viewText = "Giá trị đơn hàng: " + formatMoney(orderValue, 2, '.', ',')  + " USD\n";
     viewText += "Khối lượng đơn hàng: " + formatMoney(weightValue, 2, '.', ',')  + " lbs\n";    
     viewText += "\nĐơn hàng sau thuế và ship: " + formatMoney(donhangsauthuevaship, 4, '.', ',') + " USD";
-    viewText += "(" + formatMoney(orderValue, 2, '.', ',')  + " USD + 9% tax + " + shippingCost + " USD ship nội địa USA)";    
+    viewText += "(" + formatMoney(orderValue, 2, '.', ',')  + " USD + "+taxValue+"% tax + " + shippingCost + " USD ship nội địa USA)";    
     
     if (overload > 0) viewText += "\nĐơn hàng bị phụ thu: " + overload + " lbs ~" + overloadMoney + " USD (quy đổi ~ " + formatMoney(overloadMoney * rate, 2, '.', ',')  + " VND)";
     else viewText += "\nĐơn hàng không bị phụ thu.";    
